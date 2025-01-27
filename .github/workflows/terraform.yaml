@@ -1,0 +1,37 @@
+name: Create SQS Queue
+
+on:
+  workflow_dispatch: # Permite disparar o workflow manualmente
+
+jobs:
+  create-sqs:
+    name: Create SQS Queue
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ env.REGION_DEFAULT }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: terraform/main
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: terraform/main
+
+      - name: Terraform Apply
+        id: terraform-apply
+        run: terraform apply -auto-approve
+        working-directory: terraform/main
