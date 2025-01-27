@@ -5,6 +5,9 @@ on:
     branches:
       - feature/*
 
+env:
+  REGION_DEFAULT: "us-east-1"
+
 jobs:
   create-sqs:
     name: Create SQS Queue
