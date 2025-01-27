@@ -1,7 +1,9 @@
 name: Create SQS Queue
 
 on:
-  workflow_dispatch: # Permite disparar o workflow manualmente
+  push:
+    branches:
+      - feature/*
 
 jobs:
   create-sqs:
