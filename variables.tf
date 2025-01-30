@@ -23,9 +23,9 @@ variable "AWS_REGION" {
 }
 
 variable "labRole" {
-  default = "arn:aws:iam::692348767810:role/LabRole"
+  default = "arn:aws:iam::083261780098:role/LabRole"
 }
 
 variable "principalArn" {
-  default = "arn:aws:iam::692348767810:role/voclabs"
+  default = "arn:aws:iam::083261780098:role/voclabs"
 }
